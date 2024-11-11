@@ -77,4 +77,50 @@ Après avoir alimenté le Raspberry Pi, il est nécessaire d'obtenir son adresse
    ip a
 ![Texte alternatif]()
 
+# Étape 2 : Activer le serveur VNC sur le Raspberry Pi
 
+1. **Ouvrir les paramètres de configuration du Raspberry Pi :**
+   - Entrez la commande suivante pour ouvrir la configuration du Raspberry Pi :
+     ```bash
+     sudo raspi-config
+     ```
+   
+2. **Accéder au menu Interface Options et sélectionner VNC :**
+   - Activez le serveur VNC.
+
+3. **Ouvrir l'application VNC et rechercher l'IP du Raspberry Pi :**
+   - L'identifiant et le mot de passe vous seront demandés.
+   - admin et Super sont les identifiants
+   - Une fois connecté, l'interface graphique du Raspberry Pi devrait s'afficher dans le client VNC, vous permettant de contrôler le Raspberry Pi à distance comme si vous utilisiez un écran directement connecté.
+
+---
+
+## Chapitre 3 - 7 octobre
+
+Avant d’implémenter le code du suiveur de ligne, il a été nécessaire de mettre en place un tableau de vérité pour identifier les conditions du bon déroulement de la voiture sur le suiveur de ligne.
+
+---
+
+## Chapitre 4 - 14 octobre au 11 novembre : Configuration et tests du suiveur de ligne
+
+> Pendant ces semaines, j’ai rencontré quelques problèmes techniques au niveau du `runCar`, et je me suis focalisé sur l’implémentation d’une structure de code pour le bon déroulement du suiveur de ligne.
+
+### Étape 1 : Préparer le capteur de ligne
+
+- Pour que la voiture RunCar Z puisse suivre une ligne, il est nécessaire d'utiliser un capteur de ligne. Ce capteur peut être installé en utilisant des modules infrarouges qui détectent la présence d'une ligne noire sur un fond blanc.
+- Connecter le capteur de ligne au Raspberry Pi via les ports GPIO sur la voiture.
+- Installer les bibliothèques nécessaires pour utiliser le capteur avec Python. Une bibliothèque couramment utilisée pour interfacer avec les GPIO de Raspberry Pi est `RPi.GPIO`.
+
+### Étape 2 : Programmation du suiveur de ligne
+
+- Une fois le capteur de ligne installé et connecté, il est temps de tester le code du robot pour qu'il puisse suivre la ligne. Voici un exemple simple de code Python pour ce faire :
+  
+  ```python
+  # Todo code
+  ```
+  ### Étape 3 : Test du suiveur de ligne
+ - Ouvrir un terminal et vous rendre dans le répertoire du fichier qui contient le fichier de démarrage du programme :
+   ```bash
+   python nom_du_programme.py
+   ```
+  
