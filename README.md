@@ -352,3 +352,10 @@ C’est similaire à un tableau de vérité où chaque état des capteurs corres
 - J'ai testé le script **lineFollower.py** avec la voiture.
 - Résultat : Le module détecte correctement la surface blanche et la surface noire.
 - Limitation : Par manque de temps, la construction d’une voiture 3D n’a pas pu être réalisée.
+
+# La détection des obstacles
+
+Nous allons ajouter la fonctionnalité de détection d’obstacle : [Sunfounder PiCar-S Obstacle Avoidance](https://docs.sunfounder.com/projects/picar-s/en/latest/obstacle_avoidance.html).
+
+J’ai réalisé le fichier `obstacle_detection`, mais pour l’instant, je n’ai pas été en mesure de renvoyer des valeurs entre la voiture et un obstacle.
+
