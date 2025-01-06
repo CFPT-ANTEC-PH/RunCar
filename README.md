@@ -286,3 +286,69 @@ if __name__ == '__main__':
    python nom_du_programme.py
    ```
   
+# Étape 2 : Programmation du suiveur de ligne
+
+## Fonctionnement général du script
+
+Le script utilise la bibliothèque **SunFounder_Line_Follower** pour lire les valeurs des capteurs infrarouges et ajuste les moteurs avant (**front_wheels**) et arrière (**back_wheels**) afin de maintenir le robot sur une ligne.
+
+### Initialisation des modules
+Les modules nécessaires sont initialisés, notamment :
+- **Moteurs avant et arrière** : Configurés avec `front_wheels` et `back_wheels`.
+
+### Lecture des capteurs infrarouges
+La méthode `lf.read_digital()` renvoie une liste de 5 éléments représentant les capteurs infrarouges :
+- **0** : Capteur détectant une surface blanche.
+- **1** : Capteur détectant une surface noire.
+
+### Calcul de la direction
+Le script utilise une logique conditionnelle basée sur les états des capteurs pour déterminer les actions suivantes :
+- Aller tout droit.
+- Tourner à gauche.
+- Tourner à droite.
+
+C’est similaire à un tableau de vérité où chaque état des capteurs correspond à une action spécifique.
+
+---
+
+## Gestion de la connexion I²C avec i2cdetect
+
+### Outil **i2cdetect**
+`i2cdetect` est un outil Linux permettant de scanner le bus I²C pour détecter les périphériques connectés.
+
+### Points clés
+
+1. **Bibliothèque SunFounder** :
+   - Le script utilise `picar.setup()` pour initialiser les périphériques I²C via les bibliothèques de SunFounder.
+   - Ces périphériques (capteurs et moteurs) communiquent avec le Raspberry Pi via I²C.
+
+2. **Adresse des périphériques** :
+   - Les modules tels que **Line_Follower**, **front_wheels**, et **back_wheels** sont configurés via des fichiers de configuration (`db='config'`) contenant les adresses I²C.
+
+3. **Dépannage avec i2cdetect** :
+   - Si un périphérique n'est pas correctement détecté, `i2cdetect` permet de vérifier son état de connexion.
+
+---
+
+## Logique de suivi de ligne
+
+### États des capteurs et actions
+
+| **Capteurs**  | **Action**                    | **Angle** |
+|----------------|-------------------------------|-----------|
+| `[0,0,1,0,0]`  | Tout droit                   | 90°       |
+| `[0,1,1,0,0]`  | Tourne légèrement à droite   | < 90°     |
+| `[1,0,0,0,0]`  | Tourne fortement à droite    | << 90°    |
+| `[0,0,1,1,0]`  | Tourne légèrement à gauche   | > 90°     |
+| `[0,0,0,0,1]`  | Tourne fortement à gauche    | >> 90°    |
+| `[0,0,0,0,0]`  | Hors piste, action de récupération | --    |
+
+---
+
+# Étape 3 : Test du suiveur de ligne
+
+### Test réalisé le lundi 25 novembre 2024
+
+- J'ai testé le script **lineFollower.py** avec la voiture.
+- Résultat : Le module détecte correctement la surface blanche et la surface noire.
+- Limitation : Par manque de temps, la construction d’une voiture 3D n’a pas pu être réalisée.
